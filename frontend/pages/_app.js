@@ -1,16 +1,18 @@
 import App from "next/app"
 import Head from "next/head"
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "../assets/css/style.scss"
 import "../assets/css/_style.scss"
 import { createContext } from "react"
 import { fetchAPI } from "../lib/api"
 import { getStrapiMedia } from "../lib/media"
+import Link from "next/link"
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({})
 
 const MyApp = ({ Component, pageProps }) => {
-  const { global } = pageProps
+  const { global, homepage } = pageProps
 
   return (
     <>
@@ -21,7 +23,14 @@ const MyApp = ({ Component, pageProps }) => {
         />
       </Head>
       <GlobalContext.Provider value={global.attributes}>
-        <Component {...pageProps} />
+        <div className="container">
+          <div className="hero-title text-center py-5">
+            <Link href="/">
+              <h1 className="title-header">{homepage.attributes.hero.title}</h1>
+            </Link>
+          </div>
+          <Component {...pageProps} />
+        </div>
       </GlobalContext.Provider>
     </>
   )
@@ -43,8 +52,16 @@ MyApp.getInitialProps = async (ctx) => {
       },
     },
   })
+
+  const homepageRes = await fetchAPI("/homepage", {
+    populate: {
+      hero: "*",
+      seo: { populate: "*" },
+    }
+  });
+
   // Pass the data to our page via props
-  return { ...appProps, pageProps: { global: globalRes.data } }
+  return { ...appProps, pageProps: { global: globalRes.data, homepage: homepageRes.data } }
 }
 
 export default MyApp
