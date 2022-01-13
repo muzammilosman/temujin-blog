@@ -3,20 +3,20 @@ import Link from "next/link"
 
 const Nav = ({ categories }) => {
   return (
-    <div className="nav-container p-2 d-flex text-center">
-        <ul class="nav">
+    <div className="nav-container justify-content-center p-2 d-flex text-center">
+        <div className="nav">
           {
             categories.map((category) => {
               return (
-                <li class="nav-item">
+                <div className="nav-item">
                   <Link href={`/category/${category.attributes.slug}`}>
                     <a className="nav-link">{category.attributes.name}</a>
                   </Link>
-                </li>
+                </div>
               )
             })
           }
-        </ul>
+        </div>
     </div>
   )
 }

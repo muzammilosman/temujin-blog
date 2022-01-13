@@ -1,5 +1,9 @@
 @import "./fonts.scss";
 
+@mixin dotted-underline {
+  border-bottom: 1px dotted #ccc;
+}
+
 a {
   text-decoration: none;
 }
@@ -48,6 +52,7 @@ img:hover {
 
 .hero-title {
   .title-header {
+    @include dotted-underline();
     cursor: pointer;
   }
 }
