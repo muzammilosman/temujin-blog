@@ -12,9 +12,9 @@ const Card = ({ article }) => {
             <h2 id="" className="text-center py-4 my-2">
               {article.attributes.title}
             </h2>
-            <p id="category" className="">
+            {/* <p id="category" className="">
               {article.attributes.category.name}
-            </p>
+            </p> */}
           </div>
           <Attributes article={article} />
           <div className="w-50 mx-auto">
