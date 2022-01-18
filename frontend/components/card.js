@@ -1,22 +1,24 @@
 import React from "react"
 import Link from "next/link"
 import NextImage from "./image"
+import Attributes from "./attributes"
 
 const Card = ({ article }) => {
   return (
     <Link href={`/article/${article.attributes.slug}`}>
-      <a className="uk-link-reset">
-        <div className="uk-card uk-card-muted">
-          <div className="uk-card-media-top">
-            <NextImage image={article.attributes.image} />
-          </div>
-          <div className="uk-card-body">
-            <p id="category" className="uk-text-uppercase">
+      <a className="text-decoration-none">
+        <div className="">
+          <div className="">
+            <h2 id="" className="text-center py-4 my-2">
+              {article.attributes.title}
+            </h2>
+            <p id="category" className="">
               {article.attributes.category.name}
             </p>
-            <p id="title" className="uk-text-large">
-              {article.attributes.title}
-            </p>
+          </div>
+          <Attributes article={article} />
+          <div className="w-50 mx-auto">
+            <NextImage image={article.attributes.image} />
           </div>
         </div>
       </a>

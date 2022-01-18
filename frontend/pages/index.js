@@ -31,7 +31,8 @@ export async function getStaticProps() {
         seo: { populate: "*" },
       }
     }),
-  ])
+  ]);
+  console.log(articlesRes.data[0].attributes)
 
   return {
     props: {
