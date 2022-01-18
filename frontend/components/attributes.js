@@ -16,10 +16,20 @@ const Attributes = ({article}) => {
                 </span>
             </div>
             <div className="date-posted px-3">
-                on: {createdAt}
+                on:
+                <span className="attribute-val">
+                    {
+                        createdAt ? createdAt : ``
+                    }
+                </span>
             </div>
             <div className="category-posted px-3">
-                in: {category}
+                in:
+                <span className="attribute-val">
+                    {
+                        category ? category : ``
+                    }
+                </span>
             </div>
         </div>
     )
