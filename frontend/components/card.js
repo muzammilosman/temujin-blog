@@ -6,8 +6,8 @@ import Attributes from "./attributes"
 const Card = ({ article }) => {
   return (
     <Link href={`/article/${article.attributes.slug}`}>
-      <a className="text-decoration-none">
-        <div className="">
+      <div className="text-decoration-none">
+        <div className="py-4">
           <div className="">
             <h2 id="" className="text-center py-4 my-2">
               {article.attributes.title}
@@ -20,8 +20,11 @@ const Card = ({ article }) => {
           <div className="w-50 mx-auto">
             <NextImage image={article.attributes.image} />
           </div>
+          <div className="article-desc py-2 text-center">
+            {article.attributes.description}
+          </div>
         </div>
-      </a>
+      </div>
     </Link>
   )
 }
