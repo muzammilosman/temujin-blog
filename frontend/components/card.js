@@ -2,14 +2,13 @@ import React from "react"
 import Link from "next/link"
 import NextImage from "./image"
 import Attributes from "./attributes"
+import Description from "./description"
 
-const Card = ({ article }) => {
+const Card = ({ article, index }) => {
   return (
-    <Link href={`/article/${article.attributes.slug}`}>
-      <div className="text-decoration-none">
-        <div className="py-4">
-          <div className="">
-            <h2 id="" className="text-center py-4 my-2">
+      <div className={"article-card pb-5 " + (index === 0 ? 'pt-3' : 'pt-5')}>
+          <div className="article-header">
+            <h2 className="text-center my-2">
               {article.attributes.title}
             </h2>
             {/* <p id="category" className="">
@@ -20,12 +19,16 @@ const Card = ({ article }) => {
           <div className="w-50 mx-auto">
             <NextImage image={article.attributes.image} />
           </div>
-          <div className="article-desc py-2 text-center">
-            {article.attributes.description}
+          <Description description={article.attributes.description} />
+          <div className="continue-read text-center">
+            <Link href={`/article/${article.attributes.slug}`}>
+              <a className="text-decoration-none p-2">
+                Continue reading
+                <i className="bi bi-arrow-right px-1"></i>
+              </a>
+            </Link>
           </div>
-        </div>
       </div>
-    </Link>
   )
 }
 

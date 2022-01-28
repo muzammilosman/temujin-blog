@@ -41,6 +41,13 @@ h1 {
   line-height: 1.75;
 }
 
+.article-header{
+
+  h2 {
+    font-family: $font-header-light;
+  }
+}
+
 img:hover {
   opacity: 1;
   transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -53,6 +60,7 @@ img:hover {
 .hero-title {
   .title-header {
     @include dotted-underline();
+    font-family: $font-logo;
     cursor: pointer;
   }
 }
@@ -69,8 +77,17 @@ img:hover {
 
 .article-attr{
   color: black;
-  font-size: 15px;
+  font-size: $link-font-size;
   .attribute-val{
     color: #aaa;
+  }
+}
+
+.continue-read {
+
+  a {
+    font-size: $link-font-size;
+    border-bottom: dotted 0.5px #ccc;
+    color: black;
   }
 }

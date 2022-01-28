@@ -7,25 +7,23 @@ const Attributes = ({article}) => {
 
     return (
         <div className="article-attr d-flex justify-content-center text-decoration-none py-3">
-            <div className="author px-3">
-                Post by:
-                <span className="attribute-val">
+            <div className="author px-1">
+                Post by
+                <span className="attribute-val px-1">
                     {
                         author ? author : `Anonymous`
                     }
                 </span>
-            </div>
-            <div className="date-posted px-3">
-                on:
-                <span className="attribute-val">
+
+                on
+                <span className="attribute-val px-1">
                     {
                         createdAt ? createdAt : ``
                     }
                 </span>
-            </div>
-            <div className="category-posted px-3">
-                in:
-                <span className="attribute-val">
+
+                in
+                <span className="attribute-val px-1">
                     {
                         category ? category : ``
                     }

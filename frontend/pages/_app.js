@@ -7,6 +7,7 @@ import { createContext } from "react"
 import { fetchAPI } from "../lib/api"
 import { getStrapiMedia } from "../lib/media"
 import Link from "next/link"
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({})

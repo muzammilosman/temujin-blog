@@ -32,7 +32,6 @@ export async function getStaticProps() {
       }
     }),
   ]);
-  console.log(articlesRes.data[0].attributes)
 
   return {
     props: {

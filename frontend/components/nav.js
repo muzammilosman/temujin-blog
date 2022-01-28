@@ -8,7 +8,7 @@ const Nav = ({ categories }) => {
           {
             categories.map((category) => {
               return (
-                <div className="nav-item">
+                <div className="nav-item" key={categories.id}>
                   <Link href={`/category/${category.attributes.slug}`}>
                     <a className="nav-link">{category.attributes.name}</a>
                   </Link>

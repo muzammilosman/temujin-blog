@@ -10,7 +10,7 @@ const Articles = ({ articles }) => {
           {articles.map((article, i) => {
             return (
               <Card
-                article={article}
+                article={article} index={i}
                 key={`article__left__${article.attributes.slug}`}
               />
             )
