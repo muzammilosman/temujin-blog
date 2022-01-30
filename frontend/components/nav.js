@@ -1,24 +1,28 @@
 import React from "react"
+import {Navbar, Container, Nav} from 'react-bootstrap'
 import Link from "next/link"
 
-const Nav = ({ categories }) => {
+const NavApp = ({ categories }) => {
   return (
-    <div className="nav-container justify-content-center p-2 d-flex text-center">
-        <div className="nav">
-          {
-            categories.map((category) => {
-              return (
-                <div className="nav-item" key={categories.id}>
-                  <Link href={`/category/${category.attributes.slug}`}>
-                    <a className="nav-link">{category.attributes.name}</a>
-                  </Link>
-                </div>
-              )
-            })
-          }
-        </div>
-    </div>
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="text-decoration-none">
+              {
+                categories.map((category) => {
+                  return (
+                        <Link href={`/category/${category.attributes.slug}`}>
+                          <a className="nav-link" key={categories.id}>{category.attributes.name}</a>
+                        </Link>
+                  )
+                })
+              }
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 
-export default Nav
+export default NavApp
