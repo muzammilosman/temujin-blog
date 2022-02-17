@@ -4,7 +4,7 @@ import Link from "next/link"
 
 const NavApp = ({ categories }) => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="dotted-y-borders" expand="lg">
       <Container>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

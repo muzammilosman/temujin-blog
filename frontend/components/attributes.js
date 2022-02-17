@@ -1,4 +1,5 @@
 import React from 'react'
+import Moment from "react-moment"
 
 const Attributes = ({article}) => {
     const author = article.attributes.author.data.attributes.name;
@@ -10,23 +11,19 @@ const Attributes = ({article}) => {
             <div className="author px-1">
                 Post by
                 <span className="attribute-val px-1">
-                    {
-                        author ? author : `Anonymous`
-                    }
+                    { author ? author : `Anonymous`}
                 </span>
 
                 on
                 <span className="attribute-val px-1">
-                    {
-                        createdAt ? createdAt : ``
-                    }
+                    <Moment format="MMM Do YYYY">
+                        { createdAt ? createdAt : ``}
+                    </Moment>
                 </span>
 
                 in
                 <span className="attribute-val px-1">
-                    {
-                        category ? category : ``
-                    }
+                    { category ? category : ``}
                 </span>
             </div>
         </div>

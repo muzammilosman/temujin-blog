@@ -25,13 +25,13 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
       <GlobalContext.Provider value={global.attributes}>
         <div className="container">
-          <div className="hero-title text-center py-5">
+          <div className="hero-title text-center py-4">
             <Link href="/">
               <h1 className="title-header col-md-6 m-auto p-3">{homepage.attributes.hero.title}</h1>
             </Link>
-          </div>
-          <div className="hero-subtitle text-center pb-3">
+            <div className="hero-subtitle text-center py-5">
               <p>.... a solution to your chemical imbalance</p>
+            </div>
           </div>
           <Component {...pageProps} />
         </div>

@@ -7,7 +7,7 @@ import Seo from "../../components/seo"
 import { getStrapiMedia } from "../../lib/media"
 import { useEffect } from "react"
 
-const Article = ({ article, categories }) => {
+const Article = ({ article, categories, paths }) => {
   const imageUrl = getStrapiMedia(article.attributes.image)
   const author = article.attributes.author.data.attributes;
 
@@ -18,17 +18,20 @@ const Article = ({ article, categories }) => {
     article: true,
   }
 
+  useEffect(() => {
+    console.log(paths)
+  })
+
   return (
     <Layout categories={categories.data}>
       <Seo seo={seo} />
-      <div
-        id="banner"
-        className="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light uk-padding uk-margin"
-        data-src={imageUrl}
-        data-srcset={imageUrl}
-        data-uk-img
-      >
-        <h1>{article.attributes.title}</h1>
+      <div className="blog-title text-center py-5">
+          <h1>{article.attributes.title}</h1>
+      </div>
+      <div className="col-md-6 m-auto">
+        <div className="blog-banner py-1 w-100">
+          <img src={imageUrl} alt="blog banner" />
+        </div>
       </div>
       <div className="uk-section">
         <div className="uk-container uk-container-small">
