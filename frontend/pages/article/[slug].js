@@ -5,11 +5,14 @@ import Layout from "../../components/layout"
 import NextImage from "../../components/image"
 import Seo from "../../components/seo"
 import { getStrapiMedia } from "../../lib/media"
-import { useEffect } from "react"
+import Link from "next/link"
+import { useEffect, useState } from "react"
 
-const Article = ({ article, categories, paths }) => {
+const Article = ({ article, categories, articleList }) => {
   const imageUrl = getStrapiMedia(article.attributes.image)
   const author = article.attributes.author.data.attributes;
+  const [prevArticle, setPrev] = useState('');
+  const [nextArticle, setNext] = useState('');
 
   const seo = {
     metaTitle: article.attributes.title,
@@ -19,8 +22,13 @@ const Article = ({ article, categories, paths }) => {
   }
 
   useEffect(() => {
-    console.log(paths)
-  })
+    console.log(article);
+    const currentArticleIndex = articleList.findIndex((indexArticle) => indexArticle.path === article.attributes.slug);
+    if(currentArticleIndex >= 0){
+      articleList[currentArticleIndex - 1] ? setPrev(articleList[currentArticleIndex - 1]) : setPrev('');
+      articleList[currentArticleIndex + 1] ? setNext(articleList[currentArticleIndex + 1]) : setNext('');
+    }
+  }, [articleList]);
 
   return (
     <Layout categories={categories.data}>
@@ -57,6 +65,22 @@ const Article = ({ article, categories, paths }) => {
               </p>
             </div>
           </div>
+          <div className="nav-blogs-section row py-4">
+            {
+              prevArticle ? (
+                <div className="col-md-6 nav-blog-item previous-blog text-left">
+                    <div className="nav-label">Previous blog</div>
+                    <Link href={`/article/${prevArticle.path}`} className="nav-name text-decoration-none">{prevArticle.title}</Link>
+                </div>)  : <></>
+            }
+            {
+              nextArticle ? (
+              <div  className="col-md-6 nav-blog-item next-blog text-right">
+                  <div className="nav-label">Next blog</div>
+                  <Link href={`/article/${nextArticle.path}`} className="nav-name text-decoration-none">{nextArticle.title}</Link>
+              </div>) : <></>
+            }
+          </div>
         </div>
       </div>
     </Layout>
@@ -64,13 +88,16 @@ const Article = ({ article, categories, paths }) => {
 }
 
 export async function getStaticPaths() {
-  const articlesRes = await fetchAPI("/articles", { fields: ["slug"] })
-  return {
-    paths: articlesRes.data.map((article) => ({
+  const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
+  const paths = articlesRes.data.map((article) => {
+    return {
       params: {
-        slug: article.attributes.slug,
-      },
-    })),
+        slug: article.attributes.slug
+      }
+    }
+  });
+  return {
+    paths,
     fallback: false,
   }
 }
@@ -84,8 +111,16 @@ export async function getStaticProps({ params }) {
   })
   const categoriesRes = await fetchAPI("/categories")
 
+  const articleListRes = await fetchAPI("/articles", { fields: ["slug", "title"] });
+  const articleList = articleListRes.data.map((article) => (
+    {
+      path: article.attributes.slug,
+      title: article.attributes.title
+    }
+  ));
+
   return {
-    props: { article: articlesRes.data[0], categories: categoriesRes },
+    props: { article: articlesRes.data[0], categories: categoriesRes, articleList },
     revalidate: 1,
   }
 }
