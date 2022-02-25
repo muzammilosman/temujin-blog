@@ -67,10 +67,10 @@ img:hover {
 .nav-container {
   border-top: $dotted-borders;
   border-bottom: $dotted-borders;
-  color: black;
+  color: $main-font-color;
 
   .nav-link {
-    color: black;
+    color: $main-font-color;
   }
 }
 
@@ -79,7 +79,7 @@ img:hover {
 }
 
 .article-attr{
-  color: black;
+  color: $main-font-color;
   font-size: $link-font-size;
   .attribute-val{
     color: #aaa;
@@ -91,7 +91,7 @@ img:hover {
   a {
     font-size: $link-font-size;
     border-bottom: dotted 0.5px #ccc;
-    color: black;
+    color: $main-font-color;
   }
 }
 
@@ -107,7 +107,23 @@ img:hover {
 }
 
 .nav-blog-item{
-  color: black;
+  color: $main-font-color;
+
+  &:hover {
+    background-color: $secondary-font-color;
+  }
+
+  .nav-label {
+    color: $secondary-font-color;
+  }
+
+  a {
+    color: black;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .next-blog{
